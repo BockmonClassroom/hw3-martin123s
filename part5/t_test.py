@@ -14,6 +14,10 @@ df = pd.read_csv("combine_t1_t3.csv")
 group1 = df[df["variant_number"] == 0]
 group2 = df[df["variant_number"] == 1]
 
+group1 = group1.dropna()
+group2 = group2.dropna()
+
+
 
 
 # (1) handle control group
@@ -34,8 +38,7 @@ group1_res3 = ttest_ind(group1_set1, group1_set2)
 
 
 
-
-# handle treatment group
+# (2) handle treatment group
 # get group 2 data sets
 group2_set1 = group2[["uid", "total_act_mins"]]["total_act_mins"]
 group2_set2 = group2[["uid", "total_act_mins_pre"]]["total_act_mins_pre"]
